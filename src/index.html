@@ -1,34 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <script src="blocker.js" type="module"></script>
-    <link rel="stylesheet" href="blocker.css">
+    <link rel="stylesheet" href="blocker.css" />
     <title>The Blocker</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Welcome to Blocker</h1>
 
     <label for="executionMode">Execution Mode:</label>
     <select id="executionMode">
-        <option value="0" selected="selected">main thread</option>
-        <option value="1" disabled="disabled">dedicated worker</option>
-        <option value="2" disabled="disabled">shared worker</option>
+      <option value="0" selected="selected">main thread</option>
+      <option value="1">dedicated worker</option>
+      <option value="2">shared worker</option>
     </select>
 
     <div class="banner">
-        <div id="clock">00:00:00</div>
-        <div id="blocker" class="idle">idle</div>
-        <div id="counter">0</div>
+      <div id="clock">00:00:00</div>
+      <div id="blocker" class="idle">idle</div>
+      <div id="counter">0</div>
     </div>
     <form>
-        <input type="text" placeholder="type something">
-        <button id="incCounter" type="button">Add +1</button>
-        <button id="runBlocker" type="button">Block 5 sec.</button>
+      <input type="text" placeholder="type something" />
+      <button id="incCounter" type="button">Add +1</button>
+      <button id="runBlocker" type="button">Block 5 sec.</button>
     </form>
     <h1 id="pi">π ≅ ?</h1>
-</body>
-
+  </body>
 </html>
