@@ -8,6 +8,7 @@ const CLOCK_ID = 'clock'
 const COUNTER_ID = 'counter'
 const BLOCKER_ID = 'blocker'
 const INC_COUNTER_ID = 'incCounter'
+const INC_COUNTER_ALL_ID = 'incCounterAll'
 const RUN_BLOCKER_ID = 'runBlocker'
 const PI_ID = 'pi'
 
@@ -29,6 +30,8 @@ if (window.Worker) {
     if (event.data === 'running') {
       signalRunningState()
       return
+    } else if (event.data === 'addition') {
+      incCounter()
     } else {
       signalIdleState(event.data)
     }
@@ -63,6 +66,12 @@ function incCounter() {
   var counter = document.getElementById(COUNTER_ID)
   var value = Number(counter.innerHTML) + 1
   counter.innerHTML = value
+}
+
+function incCounterAll() {
+  if (sharedWorker) {
+    sharedWorker.port.postMessage('addition')
+  }
 }
 
 function runBlocker(seconds) {
@@ -118,6 +127,7 @@ function updateClock() {
 /* set up to user interface */
 document.getElementById(CLOCK_ID).innerHTML = localTime
 document.getElementById(INC_COUNTER_ID).addEventListener('click', incCounter)
+document.getElementById(INC_COUNTER_ALL_ID).addEventListener('click', incCounterAll)
 document.getElementById(RUN_BLOCKER_ID).addEventListener('click', () => runBlocker(5.0))
 
 // run updateClock periodically

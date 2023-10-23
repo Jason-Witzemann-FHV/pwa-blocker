@@ -17,6 +17,10 @@ onconnect = (connectEvent) => {
   ports.add(port)
 
   port.onmessage = (event) => {
+    if (event.data === 'addition') {
+      broadcastMessage('addition')
+      return
+    }
     const message = event.data
     console.debug(`worker got message: ${message}`)
 
